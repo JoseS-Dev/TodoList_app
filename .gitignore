@@ -22,3 +22,8 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+composer.lock
+phpunit.xml
+package-lock.json
+.env.example
+artisan
