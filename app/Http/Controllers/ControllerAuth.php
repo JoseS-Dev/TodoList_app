@@ -29,14 +29,17 @@ class ControllerAuth extends Controller
                 'password' => 'required|string|min:6|confirmed'
             ]);
             // Creamos al usuario
-            $user = User::create([
+            User::create([
                 'name' => $validation['name'],
                 'email' => $validation['email'],
                 'password' => $validation['password']
             ]);
-            if($user){
-                return redirect()->route('login.form');
-            }
+            session()->flash('swal', [
+                'icon' => 'success',
+                'title' => 'Usuario registrado con éxito',
+                'text' => 'Ya puedes iniciar sesión'
+            ]);
+            return redirect()->route('login.form');
         }
         catch(\Exception $e){
             return redirect()->back()->withErrors(['error' => 'Error al registrar el usuario: '.$e->getMessage()])->withInput();
