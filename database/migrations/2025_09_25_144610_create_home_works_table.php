@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('description_work')->nullable();
             $table->date('initial_date')->nullable();
             $table->date('final_date')->nullable();
-            $table->string('category_work')->nullable();
             $table->boolean('status')->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

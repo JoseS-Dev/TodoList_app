@@ -15,3 +15,7 @@ Route::middleware('guest')
 // Ruta para loguear un usuario
 Route::middleware('guest')
     ->post('/login-user',[ControllerAuth::class, 'login'])->name('login.session');
+
+// Ruta para cerrar la sesión
+Route::middleware('auth')
+    ->post('/logout', [ControllerAuth::class, 'logout'])->name('logout.out');

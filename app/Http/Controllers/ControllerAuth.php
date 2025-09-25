@@ -55,25 +55,33 @@ class ControllerAuth extends Controller
         ]);
         try{
             if(Auth::attempt($credentials)){
-                $request->session()->regenerate();
-                session()->flash('swal', [
+                session()->flash('swal-login', [
                     'icon' => 'success',
                     'title' => 'Inicio de sesión exitoso',
                     'text' => 'Bienvenido de nuevo'
                 ]);
+                $request->session()->regenerate();
                 return redirect()->intended('/dashboard');
             }
             else{
-                return redirect()->back();
-                session()->flash('swal', [
+                session()->flash('swal-error', [
                     'icon' => 'error',
                     'title' => 'Error de autenticación',
                     'text' => 'Credenciales inválidas'
                 ]);
+                return redirect()->back();
             }
         }
         catch(\Exception $e){
             return redirect()->back()->withErrors(['error' => 'Error al iniciar sesión: '.$e->getMessage()])->withInput();
         }
+    }
+
+    // Controlador para cerrar la sesión
+    public function logout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

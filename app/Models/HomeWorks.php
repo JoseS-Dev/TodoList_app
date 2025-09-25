@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Dom\Attr;
+
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,8 +19,7 @@ class HomeWorks extends Model
         'title_work',
         'description_work',
         'initial_date',
-        'final_date',
-        'category_work',
+        'final_date'
     ];
 
     protected $guarded = ['id', 'status', 'user_id'];
@@ -103,6 +102,19 @@ class HomeWorks extends Model
                 return Carbon::parse($value)->format('Y-m-d');
             }
         );
+    }
+
+    // Relación muchos a muchos con CategoryWorks
+    public function categoryWorks()
+    {
+        return $this->belongsToMany(CategoryWork::class, 'category_word_home_word', 
+        'home_work_id', 'category_work_id');
+    }
+
+    // Relación inversa con User
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

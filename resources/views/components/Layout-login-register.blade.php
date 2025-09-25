@@ -19,5 +19,10 @@
             Swal.fire(@json(session('swal')));
         </script>
     @endif
+    @if(session('swal-login'))
+        <script>
+            Swal.fire(@json(session('swal-login')));
+        </script>
+    @endif
 </body>
 </html>
