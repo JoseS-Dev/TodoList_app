@@ -51,15 +51,29 @@ class ControllerAuth extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string',
+            'password' => 'required|string'
         ]);
-
-        if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+        try{
+            if(Auth::attempt($credentials)){
+                $request->session()->regenerate();
+                session()->flash('swal', [
+                    'icon' => 'success',
+                    'title' => 'Inicio de sesión exitoso',
+                    'text' => 'Bienvenido de nuevo'
+                ]);
+                return redirect()->intended('/dashboard');
+            }
+            else{
+                return redirect()->back();
+                session()->flash('swal', [
+                    'icon' => 'error',
+                    'title' => 'Error de autenticación',
+                    'text' => 'Credenciales inválidas'
+                ]);
+            }
         }
-        else{
-            return redirect()->route('auth.login');
+        catch(\Exception $e){
+            return redirect()->back()->withErrors(['error' => 'Error al iniciar sesión: '.$e->getMessage()])->withInput();
         }
     }
 }
