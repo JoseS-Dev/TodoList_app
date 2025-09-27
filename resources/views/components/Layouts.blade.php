@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TodoList-app</title>
+    <title>{{$title}}</title>
     @vite('resources/css/app.css', 'resources/js/app.js')
     @include('sweetalert2::index')
 </head>
@@ -25,7 +25,7 @@
                 <li class="h-auto flex items-center justify-center hover:border-b-2 hover:border-white 
                 w-1/5 cursor-pointer hover:scale-95 hover:text-blue-300 transition-transform duration-300
                 py-1.5">
-                    <a href="#">Tareas</a>
+                    <a href="{{route('homeworks')}}">Tareas</a>
                 </li>
                 <li class="h-auto flex items-center justify-center hover:border-b-2 hover:border-white 
                 w-1/5 cursor-pointer hover:scale-95 hover:text-blue-300 transition-transform duration-300
@@ -46,10 +46,10 @@
                 </button>
             </form>
     </header>
-    <main class="w-full h-10/12 flex">
+    <main class="w-full h-11/12 flex">
         {{ $slot }}
     </main>
-    <footer class="w-full h-1/10 border-t-2 border-gray-900 flex justify-between items-center 
+    <footer class="w-full h-14 border-t-2 border-gray-900 flex justify-between items-center 
     bg-blue-600 px-3 text-white">
         <h3 class="font-semibold">Desarrollado por JoseS-Dev - 2025</h3>
         <article class="flex items-center h-full w-1/2">

@@ -14,7 +14,12 @@ class ControllerHomeWorks extends Controller
      */
     public function index()
     {
-        //
+        // Obtengo todas las tareas de un usuario
+        $homeworks = HomeWorks::where('user_id', Auth::id())->get();
+        // Obtengo todas las tareas que ha sido completadas por el usuario
+        $homeworksFinished = HomeWorks::where('user_id', Auth::id())
+        ->where('status', true)->orderBy('final_date', 'asc')->get();
+        return view('admin.homeworks.index', compact('homeworks', 'homeworksFinished'));
     }
 
     /**
@@ -22,7 +27,7 @@ class ControllerHomeWorks extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.homeworks.create');
     }
 
     /**
@@ -30,7 +35,20 @@ class ControllerHomeWorks extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'title_work' => 'required|string|max:255',
+            'description_work' => 'required|string',
+            'final_date' => 'required|date|after_or_equal:initial_date',
+        ]);
+        // Se crea la nota
+        HomeWorks::create([
+            'title_work' => $validation['title_work'],
+            'description_work' => $validation['description_work'],
+            'initial_date' => now(),
+            'final_date' => $validation['final_date'],
+            'user_id' => Auth::id()
+        ]);
+        return redirect()->route('homeworks');
     }
 
     /**

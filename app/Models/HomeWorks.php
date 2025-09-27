@@ -19,7 +19,8 @@ class HomeWorks extends Model
         'title_work',
         'description_work',
         'initial_date',
-        'final_date'
+        'final_date',
+        'user_id'
     ];
 
     protected $guarded = ['id', 'status', 'user_id'];
