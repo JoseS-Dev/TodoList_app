@@ -1,9 +1,10 @@
 <x-layout-login-register title="login">
     <article class="w-3/5 h-full p-4 flex flex-col items-center gap-2">
         <h2 class="text-3xl w-full border-b-2 border-blue-500">Login de Usuario</h2>
-        <form method="POST" action="{{ route('login.session') }}" class="w-full h-full p-3 flex flex-col items-center">
+        <form method="POST" action="{{ route('login.session') }}" class="w-full h-full p-3 flex flex-col
+        justify-evenly items-center">
             @csrf
-            <div class="w-full h-3/10 border-b-2 p-2 border-blue-600 flex flex-col justify-evenly">
+            <div class="w-full h-1/5 border-b-2 p-2 border-blue-600 rounded-2xl flex flex-col gap-4">
                 <label class="text-xl tracking-lighter w-full border-b-2 border-blue-600">Email:</label>
                 <input
                     type="email"
@@ -14,7 +15,7 @@
                     id="email"
                 />
             </div>
-            <div class="w-full h-3/10 p-2 border-b-2 border-blue-600 flex flex-col justify-evenly">
+            <div class="w-full h-1/5 p-2 border-b-2 border-blue-600 rounded-2xl flex flex-col gap-4">
                 <label class="text-xl tracking-lighter w-full border-b-2 border-blue-600">Contraseña:</label>
                 <input
                     type="password"

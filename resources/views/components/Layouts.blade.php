@@ -32,11 +32,6 @@
                 py-1.5">
                     <a href="#">Perfil</a>
                 </li>
-                <li class="h-auto flex items-center justify-center hover:border-b-2 hover:border-white 
-                w-1/5 cursor-pointer hover:scale-95 hover:text-blue-300 transition-transform duration-300
-                py-1.5">
-                    <a href="{{ route('category.index')}}">Categorias</a>
-                </li>
             </ul>
         </nav>
         <article class="h-full w-1/5 flex items-center justify-center p-3">

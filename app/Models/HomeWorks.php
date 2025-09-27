@@ -104,12 +104,6 @@ class HomeWorks extends Model
         );
     }
 
-    // Relación muchos a muchos con CategoryWorks
-    public function categoryWorks()
-    {
-        return $this->belongsToMany(CategoryWork::class, 'category_word_home_word', 
-        'home_work_id', 'category_work_id');
-    }
 
     // Relación inversa con User
     public function user()
